@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yourpill - inicio de sesiòn</title>
     <link rel="stylesheet" href="..//css/bootstrap.css">
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,15 +19,13 @@
         }
 
         .login-container {
-            background: #fff;
+            width: 300px;
+            max-width: 90%;
+            margin: auto;
+            background: #60A5FA;
             padding: 2em 3em;
-            border-radius: 8px;
+            border-radius: 25px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            margin-bottom: 1em;
-            color: #2d3436;
         }
 
         input[type="text"],
@@ -53,17 +52,23 @@
         }
 
         .links a {
-            color: #0984e3;
+            color: #000000;
             text-decoration: none;
             margin: 0 0.5em;
+        }
+        .logo {
+
+            width: 300px;
+            max-width: 90%;
+            margin: auto;
         }
     </style>
 </head>
 
 <body>
     <div class="login-container">
-        <h2>Iniciar sesión en YourPill</h2>
         <form method="POST" action="login.php">
+            <img src="../resources/images/imagen yourpill.jpeg" class="logo">
             <label>Usuario:</label>
             <input type="text" name="username" required>
             <label>Contraseña:</label>
