@@ -8,23 +8,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $genero = $_POST['genero'];
     $telefono = $_POST['telefono'];
     $email = $_POST['email'];
+    $password = $_POST['password'];
     $peso = $_POST['peso'];
     $altura = $_POST['altura'];
     $rol_id = $_POST['rol_id'];
-    $password = $_POST['password'];
 
     // Encriptar la contraseña antes de guardarla
     $password_segura = password_hash($password, PASSWORD_BCRYPT);
 
-    // Insertar en la base de datos
-    $stmt = $conn->prepare("INSERT INTO Usuario (email, contrasena, rol_id) VALUES (?, ?, ?)");
-    $rol_id = 2; // 2 = Usuario normal, cambia si necesitas otro rol
-    $stmt->bind_param("ssi", $email, $password_segura, $rol_id);
+    // Insertar en la base de datos asegurando el orden correcto
+    $stmt = $conn->prepare("INSERT INTO Usuarios (numero_identificacion, primer_nombre, primer_apellido, genero, telefono, email, contrasena, peso, altura, rol_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    // Asegurar que bind_param sigue el orden de columnas de la BD
+    $stmt->bind_param("sssssssdii", $numero_identificacion, $primer_nombre, $primer_apellido, $genero, $telefono, $email, $password_segura, $peso, $altura, $rol_id);
 
     if ($stmt->execute()) {
         echo "Registro exitoso. Ahora puedes iniciar sesión.";
     } else {
-        echo "Error en el registro.";
+        echo "Error en el registro: " . $stmt->error;
     }
 
     $stmt->close();

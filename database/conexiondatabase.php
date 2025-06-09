@@ -1,7 +1,7 @@
 <?php
 $server = "localhost"; // 🖥️ Servidor de la base de datos (por defecto es 'localhost')
 $username = "root";    // 👤 Usuario de MySQL (ajústalo si tienes otro)
-$password = "dilan1706";        // 🔑 Contraseña de MySQL (cambia si tienes una configurada)
+$password = "";        // 🔑 Contraseña de MySQL (cambia si tienes una configurada)
 $database = "base_yourpill"; // 📂 Nombre de tu base de datos
 
 // Crear conexión
