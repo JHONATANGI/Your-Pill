@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include '../database/conexiondatabase.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numero_identificacion = $_POST['numero_identificacion'];

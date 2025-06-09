@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yourpill - inicio de sesiòn</title>
-    <link rel="stylesheet" href="..//css/bootstrap.css">
+    <title>yourpill - inicio de sesión</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
     
     <style>
         body {
@@ -52,12 +52,15 @@
         }
 
         .links a {
-            color: #000000;
+                color: #1E3A8A;
+                text-decoration: underline;
+            }
+    
+            .links a:hover {
+                color: #60A5FA;
             text-decoration: none;
             margin: 0 0.5em;
-        }
-        .logo {
-
+            justify-content: right;
             width: 250px;
             max-width: 90%;
             margin: auto;
@@ -67,22 +70,27 @@
 </head>
 
 <body>
-    <div class="login-container">
+    <div class ="login-container">
+        <!-- Form for user login, sends username and password to the backend for authentication -->
         <form method="POST" action="../backend/login.php">
-            <img src="../resources/images/imagen yourpill.jpeg" class="logo">
+            
+            <div class="text-center mb-4">
+                <img src="../resources/images/imagen yourpill.jpeg" alt="YourPill logo" class="logo" width="250" height="200">
+            </div>
             <label>Usuario:</label>
             <input type="text" name="username" required>
             <label>Contraseña:</label>
             <input type="password" name="password" required>
-            <input type="submit" value="Iniciar sesion">
+            
+            <input type="submit" value="Iniciar sesión">
+            
         </form>
         <div class="links">
+            <!-- Link to user registration page -->
             <a href="../frontend/registroUsuario.html">¿No tienes cuenta? Regístrate</a>
         </div>
     </div>
     <script src="../js/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../js/bootstrap/popper.min.js"></script>
-    <script src="../js/bootstrap/bootstrap.js"></script>
 
 </body>
 
