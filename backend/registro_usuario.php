@@ -1,5 +1,5 @@
 <?php
-include '../database/conexiondatabase.php';
+include 'conexiondatabase.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tipo_identificacion = $_POST['tipo_identificacion'];
