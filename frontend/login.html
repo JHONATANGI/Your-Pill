@@ -5,88 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yourpill - inicio de sesión</title>
+    
     <link rel="stylesheet" href="../css/bootstrap.css">
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f6fa;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            width: 30%;
-            max-width: 90%;
-            margin: auto;
-            background: #60A5FA;
-            padding: 2em 3em;
-            border-radius: 25px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 0.5em;
-            margin: 0.5em 0 1em 0;
-            border: 1px solid #b2bec3;
-            border-radius: 4px;
-        }
-
-        input[type="submit"] {
-            background: #1E3A8A;
-            color: #fff;
-            border: none;
-            padding: 0.7em 2em;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .links {
-            margin-top: 1em;
-            text-align: center;
-        }
-
-        .links a {
-                color: #1E3A8A;
-                text-decoration: underline;
-            }
-    
-            .links a:hover {
-                color: #60A5FA;
-            text-decoration: none;
-            margin: 0 0.5em;
-            justify-content: right;
-            width: 250px;
-            max-width: 90%;
-            margin: auto;
-            justify-items: right;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 
 <body>
-    <div class ="login-container">
-        <!-- Form for user login, sends username and password to the backend for authentication -->
+    <div class="login-container">
         <form method="POST" action="../backend/login.php">
-            
             <div class="text-center mb-4">
-                <img src="../resources/images/imagen yourpill.jpeg" alt="YourPill logo" class="logo" width="250" height="200">
+                <img src="../resources/images/imagen_yourpill.jpeg" alt="YourPill logo" class="logo">
             </div>
-            <label>Usuario:</label>
-            <input type="text" name="username" required>
-            <label>Contraseña:</label>
-            <input type="password" name="password" required>
-            
-            <input type="submit" value="Iniciar sesión">
-            
+            <div class="form-group">
+                <label for="username"><i class="bi bi-person-circle"></i>Usuario:</label>
+                <input type="text" name="username" id="username" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+
+            <input type="submit" value="Iniciar sesión" class="btn btn-primary">
         </form>
         <div class="links">
-            <!-- Link to user registration page -->
             <a href="registro_usuario.html">¿No tienes cuenta? Regístrate</a>
         </div>
     </div>
