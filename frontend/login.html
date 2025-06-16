@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yourpill - inicio de sesión</title>
-    
+
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/login.css">
 </head>
@@ -17,8 +17,8 @@
                 <img src="../resources/images/imagen_yourpill.png" alt="YourPill logo" class="logo">
             </div>
             <div class="form-group">
-                <label for="username"><i class="bi bi-person-circle"></i>Usuario:</label>
-                <input type="text" name="username" id="username" class="form-control" required>
+                <label for="email"><i class="bi bi-person-circle"></i>Usuario:</label>
+                <input type="text" name="email" id="email" class="form-control" required>
             </div>
 
             <div class="form-group">
@@ -33,7 +33,81 @@
         </div>
     </div>
     <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+ <div id="pantalla-toast" style="display: none;"></div>
 
+<script>
+function mostrarPantallaCentral(mensaje, tipo = 'exito') {
+  const colores = {
+    exito: '#4CAF50',
+    error: '#f44336',
+    advertencia: '#ff9800'
+  };
+  const iconos = {
+    exito: '✔️',
+    error: '❌',
+    advertencia: '⚠️'
+  };
+
+  const fondo = document.getElementById('pantalla-toast');
+  fondo.style.position = 'fixed';
+  fondo.style.top = 0;
+  fondo.style.left = 0;
+  fondo.style.width = '100%';
+  fondo.style.height = '100%';
+  fondo.style.backgroundColor = 'rgba(0,0,0,0.6)';
+  fondo.style.display = 'flex';
+  fondo.style.alignItems = 'center';
+  fondo.style.justifyContent = 'center';
+  fondo.style.zIndex = 9999;
+
+  const caja = document.createElement('div');
+  caja.style.backgroundColor = colores[tipo] || '#333';
+  caja.style.color = 'white';
+  caja.style.padding = '30px 50px';
+  caja.style.borderRadius = '12px';
+  caja.style.boxShadow = '0 8px 20px rgba(0,0,0,0.4)';
+  caja.style.textAlign = 'center';
+  caja.style.maxWidth = '90%';
+  caja.style.fontFamily = 'Arial, sans-serif';
+
+  const icono = document.createElement('div');
+  icono.textContent = iconos[tipo] || 'ℹ️';
+  icono.style.fontSize = '48px';
+  icono.style.marginBottom = '10px';
+
+  const texto = document.createElement('div');
+  texto.textContent = mensaje;
+  texto.style.fontSize = '22px';
+
+  caja.appendChild(icono);
+  caja.appendChild(texto);
+  fondo.innerHTML = '';
+  fondo.appendChild(caja);
+
+  fondo.style.opacity = '0';
+  fondo.style.transition = 'opacity 0.4s ease';
+  setTimeout(() => (fondo.style.opacity = '1'), 50);
+
+  setTimeout(() => {
+    fondo.style.opacity = '0';
+    setTimeout(() => {
+      fondo.style.display = 'none';
+      const params = new URLSearchParams(window.location.search);
+      params.delete('msg');
+      params.delete('tipo');
+      window.location.search = params.toString();
+    }, 400);
+  }, 3000);
+}
+
+const params = new URLSearchParams(window.location.search);
+if (params.has('msg')) {
+  const texto = params.get('msg');
+  const tipo = params.get('tipo') || 'error';
+  mostrarPantallaCentral(texto, tipo);
+}
+</script>
+    
 </body>
 
 </html>

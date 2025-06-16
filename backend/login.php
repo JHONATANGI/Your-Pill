@@ -22,22 +22,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $hashed_password)) {
             $_SESSION['usuario_id'] = $usuario_id;
             $_SESSION['rol_id'] = $rol_id; // Guardar el rol en la sesión
-
-            // Redirigir según el rol
-            if ($rol_id == 1) {
-                header("Location: medico_dashboard.php"); // Área de medicos
-            } else {
-                header("Location: ../frontend/principal.html"); // Área de pacientes
-            }
+            header("Location: login-success.php");
             exit();
         } else {
-            echo "<script>mostrarToast('Contraseña incorrecta.');</script>";
+            header("Location: ../frontend/login.html?msg=" . urlencode("Contraseña incorrecta") . "&tipo=error");
         }
     } else {
-        echo "<script>mostrarToast('Correo no registrado.');</script>";
+        header("Location: ../frontend/login.html?msg=" . urlencode("Correo no registrado") . "&tipo=error");
     }
 
     $stmt->close();
     $conn->close();
 }
-?>
