@@ -6,10 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $conn = new mysqli("localhost", "root", "dilan1706", "base_yourpill");
+    $conn = new mysqli("localhost", "root", "", "base_yourpill");
 
     // Verificar si el usuario existe y obtener su rol
-    $stmt = $conn->prepare("SELECT usuario_id, contrasena, rol_id FROM Usuario WHERE email = ?");
+    $stmt = $conn->prepare("SELECT usuario_id, contrasena, rol_id FROM Usuarios WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
@@ -27,14 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($rol_id == 1) {
                 header("Location: medico_dashboard.php"); // Área de medicos
             } else {
-                header("Location: paciente_dashboard.php"); // Área de pacientes
+                header("Location: ../frontend/principal.html"); // Área de pacientes
             }
             exit();
         } else {
-            echo "Contraseña incorrecta.";
+            echo "<script>mostrarToast('Contraseña incorrecta.');</script>";
         }
     } else {
-        echo "Correo no registrado.";
+        echo "<script>mostrarToast('Correo no registrado.');</script>";
     }
 
     $stmt->close();

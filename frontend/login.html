@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yourpill - inicio de sesión</title>
-    
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/login.css">
+
 </head>
 
 <body>
     <div class="login-container">
         <form method="POST" action="../backend/login.php">
             <div class="text-center mb-4">
-                <img src="../resources/images/imagen_yourpill.jpeg" alt="YourPill logo" class="logo">
+                <img src="../resources/images/imagen_yourpill.png" alt="YourPill logo" class="logo">
             </div>
             <div class="form-group">
-                <label for="username"><i class="bi bi-person-circle"></i>Usuario:</label>
-                <input type="text" name="username" id="username" class="form-control" required>
+                <label for="email">Usuario:</label>
+                <input type="text" name="email" id="email" class="form-control" required>
             </div>
 
             <div class="form-group">
@@ -33,7 +33,32 @@
         </div>
     </div>
     <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <div id="toast-container"
+        style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999;"></div>
+    <script>
+        function mostrarToast(texto, tipo = 'error') {
+            const colores = {
+                error: '#f44336',
+                exito: '#4CAF50',
+                advertencia: '#ff9800'
+            };
 
+            const toast = document.createElement('div');
+            toast.textContent = texto;
+            toast.style.backgroundColor = colores[tipo] || '#333';
+            toast.style.color = 'white';
+            toast.style.padding = '14px 24px';
+            toast.style.borderRadius = '6px';
+            toast.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+            toast.style.fontFamily = 'Arial, sans-serif';
+            toast.style.marginTop = '10px';
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.4s ease';
+
+            document.getElementById('toast-container').appendChild(toast);
+            setTimeout(() => (toast.style.opacity = '1'), 100);
+            setTimeout(() => toast.remove(), 3000);
+        }
+    </script>
 </body>
-
 </html>
