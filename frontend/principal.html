@@ -1,75 +1,636 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="..//css/bootstrap.css">
-    <title>Document</title>
-</head>
-<body> 
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Pill - Sistema de Gestión</title>
+    <title>YOUR PILL </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+        .hidden {
+            display: none;
         }
-        .tabs {
-            display: flex;
-            background-color: #2196F3;
+        .tab-active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+            font-weight: bold;
         }
-        .tabs a {
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ef4444;
             color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .tabs a:hover {
-            background-color: #0b7dda;
-        }
-        .content {
-            padding: 20px;
+        @media (max-width: 768px) {
+            .mobile-flex-col {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
-<body>
-    <div class="tabs">
-        <a href="#citas">Citas</a>
-        <a href="#horarios">Horarios</a>
-        <a href="#base medicamentos">Base Medicamentos</a>
-        <a href="#inventario">Inventario</a>
-        <a href="#Recordatorio">Recordatorio</a>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="bg-white shadow-md rounded-lg mb-8 p-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-heartbeat text-3xl text-blue-500 mr-3"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">MediCare System</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <i class="fas fa-bell text-xl text-gray-600 cursor-pointer"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="w-10 h-10 rounded-full mr-2">
+                        <span class="font-medium">Dr. Juan Pérez</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="bg-white shadow-md rounded-lg overflow-hidden">
+            <!-- Tabs Navigation -->
+            <div class="flex mobile-flex-col border-b">
+                <button id="doctor-tab" class="tab-active px-6 py-4 text-lg font-medium flex items-center">
+                    <i class="fas fa-user-md mr-2"></i> Doctor
+                </button>
+                <button id="patient-tab" class="px-6 py-4 text-lg font-medium flex items-center">
+                    <i class="fas fa-user-injured mr-2"></i> Pacientes
+                </button>
+                <button id="reminder-tab" class="px-6 py-4 text-lg font-medium flex items-center">
+                    <i class="fas fa-bell mr-2"></i> Recordatorios
+                </button>
+                <button id="appointment-tab" class="px-6 py-4 text-lg font-medium flex items-center">
+                    <i class="fas fa-calendar-check mr-2"></i> Citas
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="p-6">
+                <!-- Doctor Tab Content -->
+                <div id="doctor-content" class="tab-content">
+                    <div class="mb-8">
+                        <h2 class="text-xl font-bold mb-4 text-gray-800">Formular Medicamento</h2>
+                        <form id="prescription-form" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label for="medication" class="block text-sm font-medium text-gray-700 mb-1">Medicamento</label>
+                                <input type="text" id="medication" class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                            </div>
+                            <div>
+                                <label for="dose" class="block text-sm font-medium text-gray-700 mb-1">Dosis</label>
+                                <input type="text" id="dose" class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                            </div>
+                            <div>
+                                <label for="frequency" class="block text-sm font-medium text-gray-700 mb-1">Frecuencia</label>
+                                <select id="frequency" class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="1x día">1 vez al día</option>
+                                    <option value="2x día">2 veces al día</option>
+                                    <option value="3x día">3 veces al día</option>
+                                    <option value="cada 4 horas">Cada 4 horas</option>
+                                    <option value="cada 6 horas">Cada 6 horas</option>
+                                    <option value="cada 8 horas">Cada 8 horas</option>
+                                    <option value="cada 12 horas">Cada 12 horas</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-3">
+                                <label for="instructions" class="block text-sm font-medium text-gray-700 mb-1">Indicaciones</label>
+                                <textarea id="instructions" rows="3" class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500" required></textarea>
+                            </div>
+                            <div class="md:col-span-3">
+                                <label for="patient-select" class="block text-sm font-medium text-gray-700 mb-1">Paciente</label>
+                                <select id="patient-select" class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                                    <option value="">Seleccionar paciente</option>
+                                    <option value="1">María González</option>
+                                    <option value="2">Carlos Rodríguez</option>
+                                    <option value="3">Ana Martínez</option>
+                                    <option value="4">Luis Sánchez</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-3 flex justify-end">
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200">
+                                    <i class="fas fa-save mr-2"></i> Guardar Prescripción
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-bold mb-4 text-gray-800">Control de Medicación</h2>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Paciente</th>
+                                        <th class="py-3 px-4 text-left">Medicamento</th>
+                                        <th class="py-3 px-4 text-left">Dosis</th>
+                                        <th class="py-3 px-4 text-left">Frecuencia</th>
+                                        <th class="py-3 px-4 text-left">Lunes</th>
+                                        <th class="py-3 px-4 text-left">Martes</th>
+                                        <th class="py-3 px-4 text-left">Miércoles</th>
+                                        <th class="py-3 px-4 text-left">Jueves</th>
+                                        <th class="py-3 px-4 text-left">Viernes</th>
+                                        <th class="py-3 px-4 text-left">Sábado</th>
+                                        <th class="py-3 px-4 text-left">Domingo</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3 px-4">María González</td>
+                                        <td class="py-3 px-4">Paracetamol</td>
+                                        <td class="py-3 px-4">500mg</td>
+                                        <td class="py-3 px-4">Cada 8 horas</td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-green-500">✓</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-red-500">✗</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-blue-500">↻</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-green-500">✓</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-green-500">✓</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-gray-300">-</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-gray-300">-</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4">Carlos Rodríguez</td>
+                                        <td class="py-3 px-4">Ibuprofeno</td>
+                                        <td class="py-3 px-4">400mg</td>
+                                        <td class="py-3 px-4">Cada 12 horas</td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-green-500">✓</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-green-500">✓</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-green-500">✓</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-red-500">✗</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-blue-500">↻</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-gray-300">-</span></td>
+                                        <td class="py-3 px-4"><span class="status-badge bg-gray-300">-</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patient Tab Content -->
+                <div id="patient-content" class="tab-content hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h2 class="text-xl font-bold mb-4 text-gray-800">Información del Paciente</h2>
+                            <div class="bg-gray-50 p-6 rounded-lg mb-6">
+                                <div class="flex items-center mb-4">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Patient" class="w-16 h-16 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-bold text-lg">María González</h3>
+                                        <p class="text-gray-600">Edad: 32 años</p>
+                                        <p class="text-gray-600">Tipo de sangre: O+</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="font-medium mb-2">Alergias</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Penicilina</span>
+                                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Mariscos</span>
+                                        <button id="add-allergy-btn" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-300">
+                                            <i class="fas fa-plus mr-1"></i> Agregar
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div id="allergy-form" class="hidden mb-4">
+                                    <div class="flex">
+                                        <input type="text" id="new-allergy" class="flex-grow px-3 py-2 border rounded-l-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Nueva alergia">
+                                        <button id="save-allergy-btn" class="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium mb-2">Historial Médico</h4>
+                                    <div class="space-y-2">
+                                        <div class="flex items-center justify-between bg-white p-3 rounded-lg shadow-sm">
+                                            <span>Consulta general - 15/05/2023</span>
+                                            <button class="text-blue-500 hover:text-blue-700">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                        <div class="flex items-center justify-between bg-white p-3 rounded-lg shadow-sm">
+                                            <span>Examen de sangre - 10/04/2023</span>
+                                            <button class="text-blue-500 hover:text-blue-700">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <button class="mt-3 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-upload mr-2"></i> Subir nuevo documento
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h2 class="text-xl font-bold mb-4 text-gray-800">Medicación Actual</h2>
+                            <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                                <h3 class="font-bold mb-3">Prescripción actual</h3>
+                                <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div>
+                                            <h4 class="font-medium">Paracetamol</h4>
+                                            <p class="text-sm text-gray-600">500mg - Cada 8 horas</p>
+                                        </div>
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Activa</span>
+                                    </div>
+                                    <p class="text-sm text-gray-700 mb-2">Indicaciones: Tomar con alimentos. No exceder 4g por día.</p>
+                                    <p class="text-xs text-gray-500">Recetado por: Dr. Juan Pérez - 20/05/2023</p>
+                                </div>
+                                
+                                <h3 class="font-bold mb-3">Control de Medicación</h3>
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <table class="w-full">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th class="text-left pb-2">Día</th>
+                                                <th class="text-left pb-2">Mañana</th>
+                                                <th class="text-left pb-2">Tarde</th>
+                                                <th class="text-left pb-2">Noche</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-b">
+                                                <td class="py-2">Lunes</td>
+                                                <td class="py-2">
+                                                    <button class="status-btn bg-green-500 text-white px-2 py-1 rounded" data-status="taken">✓</button>
+                                                </td>
+                                                <td class="py-2">
+                                                    <button class="status-btn bg-red-500 text-white px-2 py-1 rounded" data-status="missed">✗</button>
+                                                </td>
+                                                <td class="py-2">
+                                                    <button class="status-btn bg-blue-500 text-white px-2 py-1 rounded" data-status="postponed">↻</button>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2">Martes</td>
+                                                <td class="py-2">
+                                                    <button class="status-btn bg-gray-300 text-gray-600 px-2 py-1 rounded" data-status="pending">-</button>
+                                                </td>
+                                                <td class="py-2">
+                                                    <button class="status-btn bg-gray-300 text-gray-600 px-2 py-1 rounded" data-status="pending">-</button>
+                                                </td>
+                                                <td class="py-2">
+                                                    <button class="status-btn bg-gray-300 text-gray-600 px-2 py-1 rounded" data-status="pending">-</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reminder Tab Content -->
+                <div id="reminder-content" class="tab-content hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h2 class="text-xl font-bold mb-4 text-gray-800">Configurar Recordatorio</h2>
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <form id="reminder-form">
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Medicamento</label>
+                                        <select class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                            <option>Paracetamol</option>
+                                            <option>Ibuprofeno</option>
+                                            <option>Amoxicilina</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Horario</label>
+                                        <div class="space-y-2">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="morning" class="mr-2">
+                                                <label for="morning" class="flex items-center">
+                                                    <span class="mr-2">Mañana:</span>
+                                                    <input type="time" class="px-2 py-1 border rounded" value="08:00">
+                                                </label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="afternoon" class="mr-2" checked>
+                                                <label for="afternoon" class="flex items-center">
+                                                    <span class="mr-2">Tarde:</span>
+                                                    <input type="time" class="px-2 py-1 border rounded" value="14:00">
+                                                </label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="night" class="mr-2">
+                                                <label for="night" class="flex items-center">
+                                                    <span class="mr-2">Noche:</span>
+                                                    <input type="time" class="px-2 py-1 border rounded" value="20:00">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Método de notificación</label>
+                                        <div class="flex space-x-4">
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" class="form-checkbox text-blue-500" checked>
+                                                <span class="ml-2">Notificación push</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" class="form-checkbox text-blue-500">
+                                                <span class="ml-2">SMS</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" class="form-checkbox text-blue-500" checked>
+                                                <span class="ml-2">Email</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
+                                        <i class="fas fa-bell mr-2"></i> Activar Recordatorio
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h2 class="text-xl font-bold mb-4 text-gray-800">Recordatorios Activos</h2>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+                                    <div>
+                                        <h3 class="font-medium">Paracetamol - 500mg</h3>
+                                        <p class="text-sm text-gray-600">Tarde: 14:00</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+                                    <div>
+                                        <h3 class="font-medium">Ibuprofeno - 400mg</h3>
+                                        <p class="text-sm text-gray-600">Mañana: 08:00, Noche: 20:00</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-blue-500 hover:text-blue-700">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appointment Tab Content -->
+                <div id="appointment-content" class="tab-content hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2">
+                            <h2 class="text-xl font-bold mb-4 text-gray-800">Solicitar Cita Médica</h2>
+                            <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                                <form id="appointment-form">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Fecha</label>
+                                            <input type="date" class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Hora</label>
+                                            <input type="time" class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Médico</label>
+                                        <select class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                            <option>Dr. Juan Pérez</option>
+                                            <option>Dra. Ana López</option>
+                                            <option>Dr. Carlos Ramírez</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Motivo</label>
+                                        <textarea rows="3" class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
+                                        <i class="fas fa-calendar-check mr-2"></i> Solicitar Cita
+                                    </button>
+                                </form>
+                            </div>
+                            
+                            <h2 class="text-xl font-bold mb-4 text-gray-800">Citas Programadas</h2>
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <div class="space-y-4">
+                                    <div class="border-b pb-4">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h3 class="font-medium">Consulta de seguimiento</h3>
+                                                <p class="text-sm text-gray-600">Dr. Juan Pérez</p>
+                                            </div>
+                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Confirmada</span>
+                                        </div>
+                                        <div class="flex justify-between mt-2">
+                                            <p class="text-sm"><i class="far fa-calendar-alt mr-1"></i> 25/05/2023 - 10:30 AM</p>
+                                            <div class="flex space-x-2">
+                                                <button class="text-blue-500 hover:text-blue-700 text-sm">
+                                                    <i class="fas fa-edit mr-1"></i> Cambiar
+                                                </button>
+                                                <button class="text-red-500 hover:text-red-700 text-sm">
+                                                    <i class="fas fa-trash mr-1"></i> Cancelar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="border-b pb-4">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h3 class="font-medium">Examen anual</h3>
+                                                <p class="text-sm text-gray-600">Dra. Ana López</p>
+                                            </div>
+                                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Pendiente</span>
+                                        </div>
+                                        <div class="flex justify-between mt-2">
+                                            <p class="text-sm"><i class="far fa-calendar-alt mr-1"></i> 02/06/2023 - 09:00 AM</p>
+                                            <div class="flex space-x-2">
+                                                <button class="text-blue-500 hover:text-blue-700 text-sm">
+                                                    <i class="fas fa-edit mr-1"></i> Cambiar
+                                                </button>
+                                                <button class="text-red-500 hover:text-red-700 text-sm">
+                                                    <i class="fas fa-trash mr-1"></i> Cancelar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h2 class="text-xl font-bold mb-4 text-gray-800">Disponibilidad</h2>
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Seleccionar Médico</label>
+                                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500 mb-4">
+                                        <option>Dr. Juan Pérez</option>
+                                        <option>Dra. Ana López</option>
+                                        <option>Dr. Carlos Ramírez</option>
+                                    </select>
+                                    
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <h3 class="font-medium text-center mb-3">Dr. Juan Pérez</h3>
+                                        <div class="grid grid-cols-3 gap-2 text-center">
+                                            <div class="bg-blue-100 p-2 rounded">Lun<br>10:00-13:00</div>
+                                            <div class="bg-blue-100 p-2 rounded">Mar<br>14:00-17:00</div>
+                                            <div class="bg-blue-100 p-2 rounded">Mié<br>10:00-13:00</div>
+                                            <div class="bg-blue-100 p-2 rounded">Jue<br>14:00-17:00</div>
+                                            <div class="bg-blue-100 p-2 rounded">Vie<br>10:00-13:00</div>
+                                            <div class="bg-gray-200 p-2 rounded">Sáb<br>Cerrado</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-medium mb-2">Próximas citas disponibles</h3>
+                                    <div class="space-y-2">
+                                        <button class="w-full text-left bg-gray-100 hover:bg-gray-200 p-2 rounded">
+                                            Jue 25/05 - 14:00
+                                        </button>
+                                        <button class="w-full text-left bg-gray-100 hover:bg-gray-200 p-2 rounded">
+                                            Jue 25/05 - 14:30
+                                        </button>
+                                        <button class="w-full text-left bg-gray-100 hover:bg-gray-200 p-2 rounded">
+                                            Jue 25/05 - 15:00
+                                        </button>
+                                        <button class="w-full text-left bg-gray-100 hover:bg-gray-200 p-2 rounded">
+                                            Mié 31/05 - 10:00
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-    
-        <div id="Citas">
-            <h2>Gestión de Citas</h2>
-            <!-- Contenido citas  -->
-        </div>
-        <div id="Horarios">
-            <h2>Gestión de Horarios</h2>
-            <!-- Contenido horarios -->
-        </div>
-        <div id="Base Medicamentos">
-            <h2>Gestión de Base Medicamentos</h2>
-            <!-- Contenido Base Medicamentos  -->
-        </div>
-        <div id="Inventario">
-            <h2>Gestión de Inventario</h2>
-            <!-- Contenido Inventario  -->
-         </div>
-         <div id="Recordatorio">
-            <h2>Gestión de Recordatorio</h2> 
-            <!-- Contenido   -->
-        </div>
-</div>
-    </div>
-</body>
-</html>
-    
+
+    <script>
+        // Tab functionality
+        const tabs = {
+            'doctor-tab': 'doctor-content',
+            'patient-tab': 'patient-content',
+            'reminder-tab': 'reminder-content',
+            'appointment-tab': 'appointment-content'
+        };
+
+        Object.keys(tabs).forEach(tabId => {
+            document.getElementById(tabId).addEventListener('click', () => {
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Remove active class from all tabs
+                document.querySelectorAll('[id$="-tab"]').forEach(tab => {
+                    tab.classList.remove('tab-active');
+                });
+                
+                // Show selected tab content and mark tab as active
+                document.getElementById(tabs[tabId]).classList.remove('hidden');
+                document.getElementById(tabId).classList.add('tab-active');
+            });
+        });
+
+        // Prescription form submission
+        document.getElementById('prescription-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Prescripción guardada exitosamente');
+            this.reset();
+        });
+
+        // Allergy functionality
+        document.getElementById('add-allergy-btn').addEventListener('click', function() {
+            document.getElementById('allergy-form').classList.remove('hidden');
+        });
+
+        document.getElementById('save-allergy-btn').addEventListener('click', function() {
+            const newAllergy = document.getElementById('new-allergy').value.trim();
+            if (newAllergy) {
+                const allergyBadge = document.createElement('span');
+                allergyBadge.className = 'bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm';
+                allergyBadge.textContent = newAllergy;
+                
+                document.querySelector('.flex-wrap').insertBefore(allergyBadge, document.getElementById('add-allergy-btn'));
+                document.getElementById('new-allergy').value = '';
+                document.getElementById('allergy-form').classList.add('hidden');
+            }
+        });
+
+        // Medication status buttons
+        document.querySelectorAll('.status-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const status = this.getAttribute('data-status');
+                let bgColor, text;
+                
+                switch(status) {
+                    case 'taken':
+                        bgColor = 'bg-green-500';
+                        text = '✓';
+                        break;
+                    case 'missed':
+                        bgColor = 'bg-red-500';
+                        text = '✗';
+                        break;
+                    case 'postponed':
+                        bgColor = 'bg-blue-500';
+                        text = '↻';
+                        break;
+                    default:
+                        bgColor = 'bg-gray-300';
+                        text = '-';
+                }
+                
+                this.className = `status-btn ${bgColor} text-white px-2 py-1 rounded`;
+                this.innerHTML = text;
+                
+                // Here you would typically send this update to the server
+                console.log(`Medication status updated to: ${status}`);
+            });
+        });
+
+        // Reminder form submission
+        document.getElementById('reminder-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Recordatorio configurado exitosamente');
+        });
+
+        // Appointment form submission
+        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Cita solicitada exitosamente. Le confirmaremos la disponibilidad.');
+        });
+    </script>
 </body>
 </html>
