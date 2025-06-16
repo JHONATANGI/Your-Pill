@@ -248,8 +248,6 @@
         const tabs = {
             'doctor-tab': 'doctor-content',
             'patient-tab': 'patient-content',
-            'reminder-tab': 'reminder-content',
-            'appointment-tab': 'appointment-content'
         };
 
         Object.keys(tabs).forEach(tabId => {
@@ -325,18 +323,6 @@
                 // Here you would typically send this update to the server
                 console.log(`Medication status updated to: ${status}`);
             });
-        });
-
-        // Reminder form submission
-        document.getElementById('reminder-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Recordatorio configurado exitosamente');
-        });
-
-        // Appointment form submission
-        document.getElementById('appointment-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Cita solicitada exitosamente. Le confirmaremos la disponibilidad.');
         });
     </script>
 </body>
