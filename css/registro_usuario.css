@@ -1,9 +1,5 @@
 body {
-<<<<<<< HEAD
-background-image: url(resources/images/salud.png);
-=======
 background-image: url(../resources/images/salud.png);
->>>>>>> e00bf6d02261880468b6a9b48967c5d1ba2289ae
 background-position: center center;
 background-repeat: no-repeat;
 background-size: cover;
