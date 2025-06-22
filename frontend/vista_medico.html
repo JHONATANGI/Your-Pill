@@ -4,57 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YOUR PILL </title>
+    <title>Medico</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/sesion_medico.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #2474be, #dbeafe);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
 
-        .hidden {
-            display: none;
-        }
-
-        .tab-active {
-            border-bottom: 3px solid #3b82f6;
-            color: #3b82f6;
-            font-weight: bold;
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: #ef4444;
-            color: rgb(247, 247, 248);
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-flex-col {
-                flex-direction: column;
-            }
-        }
-    </style>
 </head>
 
 <body class="bg-gray-100 min-h-screen">
     <div class="container mx-auto px-4 py-8">
         <!-- Header -->
-        <header class="bg-white shadow-md rounded-lg mb-8 p-6">
+        <nav class="bg-white shadow-md rounded-lg mb-8 p-6">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
                     <i class="fas fa-heartbeat text-3xl text-blue-500 mr-3"></i>
@@ -62,24 +22,20 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     <div class="relative">
-                        <i class="fas fa-bell text-xl text-gray-600 cursor-pointer"></i>
-                        <span class="notification-badge">3</span>
-                    </div>
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User"
-                            class="w-10 h-10 rounded-full mr-2">
-                        <span class="font-medium">Dr. Juan Pérez</span>
+                        <div class="flex items-center">
+                            <i class="fas fa-user text-gray-700 text-2xl"></i>
+                            <span id="nombre-usuario" class="font-medium">Cargando...</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
+        </nav>
 
         <!-- Main Content -->
         <main class="bg-white shadow-md rounded-lg overflow-hidden">
             <!-- Tabs Navigation -->
             <div class="flex mobile-flex-col border-b">
                 <button id="doctor-tab" class="tab-active px-6 py-4 text-lg font-medium flex items-center">
-                    <i class="fas fa-user-md mr-2"></i> Añadir formula medica
+                    <i class="fas fa-user-md mr-2"></i> Recetas médicas
                 </button>
                 <button id="patient-tab" class="px-6 py-4 text-lg font-medium flex items-center">
                     <i class="fas fa-user-injured mr-2"></i> Pacientes
@@ -375,6 +331,19 @@
                 console.log(`Medication status updated to: ${status}`);
             });
         });
+        fetch('../backend/obtener_usuario.php', {
+            method: 'GET',
+            credentials: 'include' // 👈 Esto es clave para que se envíen las cookies de sesión
+        })
+            .then(res => res.json())
+            .then(data => {
+                const nombreCompleto = `${data.nombre} ${data.apellido}`.trim();
+                document.getElementById('nombre-usuario').textContent = nombreCompleto || 'Usuario';
+            })
+            .catch(err => {
+                console.error("Error al obtener nombre:", err);
+                document.getElementById('nombre-usuario').textContent = 'Usuario';
+            });
     </script>
 </body>
 

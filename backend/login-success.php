@@ -175,7 +175,7 @@ $nombre = isset($_SESSION['primer_nombre']) ? $_SESSION['primer_nombre'] : 'Usua
           if ($rol_id == 1) {
             echo "window.location.href = 'medico_dashboard.php';";
           } else {
-            echo "window.location.href = '../frontend/principal.html';";
+            echo "window.location.href = '../frontend/vista_medico.html';";
           }
           ?>
         }, 400);
