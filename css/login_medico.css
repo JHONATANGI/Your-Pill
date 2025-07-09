@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: 'Arial';
+  background: linear-gradient(120deg, #9BFAB0, #065f46);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medico-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #eef1f5;
+
+}
+
+.login-box {
+  position: relative; /* necesario para posicionar dentro del box */
+  max-width: 400px;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.logo {
+  max-width: 120px;
+  height: auto;
+}
+
+.icono-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.2em;
+}
+.icono-login i {
+  font-size: 5rem;
+  color: #fff;
+  animation: aparecer 0.6s ease-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.links a {
+  color: #ffffff !important;  /* Blanco para fondo verde oscuro */
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: #d9f2e3 !important;  /* Blanco suave en hover */
+  text-decoration: underline;
+}

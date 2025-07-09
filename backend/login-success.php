@@ -6,6 +6,7 @@ if (!isset($_SESSION['usuario_id']) || !isset($_SESSION['rol_id'])) {
 }
 $rol_id = $_SESSION['rol_id'];
 $nombre = isset($_SESSION['primer_nombre']) ? $_SESSION['primer_nombre'] : 'Usuario';
+$apellido = isset($_SESSION['primer_apellido']) ? $_SESSION['primer_apellido'] : 'Usuario';
 ?>
 <!DOCTYPE html>
 <html lang="es">

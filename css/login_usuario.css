@@ -17,7 +17,7 @@ body {
 
 .login-container {
   width: 100%;
-  max-width: 380px;
+  max-width: 340px;
   background: #60A5FA;
   padding: 2em;
   border-radius: 20px;
@@ -26,7 +26,7 @@ body {
 }
 
 .logo {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
   display: block;
   border-radius: 10px;
@@ -111,4 +111,55 @@ input[type="submit"]:hover {
   label {
     white-space: normal;
   }
+
+}
+.btn-tab-selector {
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  color: #1e3a8a;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-tab-selector.active-tab {
+  border-bottom: 2px solid #1e3a8a;
+  color: #1e3a8a;
+}
+.btn-outline-especialista {
+  background-color: white;
+  border: 1.5px solid #1e3a8a;
+  color: #1e3a8a;
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+
+}
+
+.btn-outline-especialista:hover {
+  background-color: #fff;
+  color: #1e3a8a;
+  transform: translateY(-2px);
+}
+.icono-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.2em;
+}
+
+.icono-login i {
+  font-size: 4rem;
+  color: #fff;
+  animation: aparecer 0.6s ease-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }

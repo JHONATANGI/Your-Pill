@@ -22,9 +22,9 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     <div class="relative">
-                        <div class="flex items-center">
+                        <div class="flex items-center space-x-2">
                             <i class="fas fa-user text-gray-700 text-2xl"></i>
-                            <span id="nombre-usuario" class="font-medium">Cargando...</span>
+                            <span id="nombre-usuario" class="font-medium text-gray-800">Cargando...</span>
                         </div>
                     </div>
                 </div>
@@ -331,19 +331,23 @@
                 console.log(`Medication status updated to: ${status}`);
             });
         });
-        fetch('../backend/obtener_usuario.php', {
-            method: 'GET',
-            credentials: 'include' // 👈 Esto es clave para que se envíen las cookies de sesión
-        })
-            .then(res => res.json())
-            .then(data => {
-                const nombreCompleto = `${data.nombre} ${data.apellido}`.trim();
-                document.getElementById('nombre-usuario').textContent = nombreCompleto || 'Usuario';
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('../backend/obtener_usuario.php', {
+                credentials: 'include'
             })
-            .catch(err => {
-                console.error("Error al obtener nombre:", err);
-                document.getElementById('nombre-usuario').textContent = 'Usuario';
-            });
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Datos recibidos del backend:", data); // 👈 Esto mostrará el JSON en la consola
+
+                    const nombreCompleto = `${data.nombre} ${data.apellido}`.trim();
+                    const span = document.getElementById('nombre-usuario');
+                    span.textContent = nombreCompleto || 'Usuario';
+                })
+                .catch(err => {
+                    console.error('Error al obtener el nombre:', err);
+                    document.getElementById('nombre-usuario').textContent = 'Usuario';
+                });
+        });
     </script>
 </body>
 
