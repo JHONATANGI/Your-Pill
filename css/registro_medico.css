@@ -1,0 +1,30 @@
+body {
+  background-image: url("../resources/images/fondo_medico.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.input-group:focus-within label {
+    color: #56c569;
+    transform: translateY(-0.5rem) scale(0.9);
+}
+
+.input-group label {
+    transition: all 0.3s ease;
+}
+
+.animate-bounce-slow {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(-5px);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+}
