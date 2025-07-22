@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssssssssssi", $tipo_identificacion, $numero_identificacion, $primer_nombre, $primer_apellido, $genero, $telefono, $email, $password_segura, $peso, $altura, $rol_id);
 
     if ($stmt->execute()) {
-            header("Location: ../frontend/login.html");
+            header("Location: ../frontend/login_usuario.html");
     exit();
     } else {
         echo "Error en el registro: " . $stmt->error;

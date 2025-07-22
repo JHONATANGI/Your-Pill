@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medico</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../css/sesion_medico.css">
+    <link rel="stylesheet" href="../css/vista_medico.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
@@ -14,103 +14,37 @@
 <body class="bg-gray-100 min-h-screen">
     <div class="container mx-auto px-4 py-8">
         <!-- Header -->
-        <nav class="bg-white shadow-md rounded-lg mb-8 p-6">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <i class="fas fa-heartbeat text-3xl text-blue-500 mr-3"></i>
-                    <h1 class="text-2xl font-bold text-gray-800">YOUR PILL</h1>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-user text-gray-700 text-2xl"></i>
-                            <span id="nombre-usuario" class="font-medium text-gray-800">Cargando...</span>
-                        </div>
-                    </div>
-                </div>
+        <nav class="bg-green-400 shadow-md rounded-lg mb-8 p-6 flex justify-between items-center">
+            <!-- Logo a la izquierda -->
+            <div class="flex-shrink-0">
+                <img src="../resources/images/LogoBlancoYourpill.png" alt="YourPill Logo" class="h-12 w-auto" />
+            </div>
+            <!-- Usuario a la derecha -->
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-user text-white text-2xl"></i>
+                <span id="nombre-usuario" class="font-medium text-white">Cargando...</span>
+            </div>
         </nav>
 
         <!-- Main Content -->
         <main class="bg-white shadow-md rounded-lg overflow-hidden">
             <!-- Tabs Navigation -->
-            <div class="flex mobile-flex-col border-b">
-                <button id="doctor-tab" class="tab-active px-6 py-4 text-lg font-medium flex items-center">
-                    <i class="fas fa-user-md mr-2"></i> Recetas médicas
-                </button>
-                <button id="patient-tab" class="px-6 py-4 text-lg font-medium flex items-center">
+            <div class="flex border-b border-green-400 bg-green-50">
+                <button id="patient-tab"
+                    class="tab-active px-6 py-4 text-lg font-medium flex items-center text-green-700 hover:bg-green-100 transition">
                     <i class="fas fa-user-injured mr-2"></i> Pacientes
                 </button>
+                <button id="doctor-tab"
+                    class="px-6 py-4 text-lg font-medium flex items-center text-green-700 hover:bg-green-100 transition">
+                    <i class="fas fa-clipboard-list mr-2"></i> Recetar
+                </button>
+
             </div>
 
-            <!-- Tab Contents -->
+            <!-- Tabla de contenido -->
             <div class="p-6">
-                <!-- Doctor Tab Content -->
-                <div id="doctor-content" class="tab-content">
-                    <div class="mb-8">
-                        <h2 class="text-xl font-bold mb-4 text-gray-800">Formula medica</h2>
-                        <form id="prescription-form" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div>
-                                <label for="medication"
-                                    class="block text-sm font-medium text-gray-700 mb-1">Medicamento</label>
-                                <input type="text" id="medication"
-                                    class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                                    required>
-                            </div>
-                            <div>
-                                <label for="dose" class="block text-sm font-medium text-gray-700 mb-1">Dosis</label>
-                                <input type="text" id="dose"
-                                    class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                                    required>
-                            </div>
-                            <div>
-                                <label for="frequency"
-                                    class="block text-sm font-medium text-gray-700 mb-1">Frecuencia</label>
-                                <select id="frequency"
-                                    class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                                    required>
-                                    <option value="">Seleccionar</option>
-                                    <option value="1x día">1 vez al día</option>
-                                    <option value="2x día">2 veces al día</option>
-                                    <option value="3x día">3 veces al día</option>
-                                    <option value="cada 4 horas">Cada 4 horas</option>
-                                    <option value="cada 6 horas">Cada 6 horas</option>
-                                    <option value="cada 8 horas">Cada 8 horas</option>
-                                    <option value="cada 12 horas">Cada 12 horas</option>
-                                </select>
-                            </div>
-                            <div class="md:col-span-3">
-                                <label for="instructions"
-                                    class="block text-sm font-medium text-gray-700 mb-1">Indicaciones</label>
-                                <textarea id="instructions" rows="3"
-                                    class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                                    required></textarea>
-                            </div>
-                            <div class="md:col-span-3">
-                                <label for="patient-select"
-                                    class="block text-sm font-medium text-gray-700 mb-1">Paciente</label>
-                                <select id="patient-select"
-                                    class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                                    required>
-                                    <option value="">Seleccionar paciente</option>
-                                    <option value="1">María González</option>
-                                    <option value="2">Carlos Rodríguez</option>
-                                    <option value="3">Ana Martínez</option>
-                                    <option value="4">Luis Sánchez</option>
-                                </select>
-                            </div>
-                            <div class="md:col-span-3 flex justify-end">
-                                <button type="submit"
-                                    class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200">
-                                    <i class="fas fa-save mr-2"></i> Guardar Prescripción
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-
-                <!-- Patient Tab Content -->
-                <div id="patient-content" class="tab-content hidden">
+                <!-- Pacientes -->
+                <div id="patient-content" class="tab-content">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                             <h2 class="text-xl font-bold mb-4 text-gray-800">Información del Paciente</h2>
@@ -245,6 +179,70 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <!-- Asignacion de formula medica -->
+                <div id="doctor-content" class="tab-content hidden">
+                    <div class="mb-8">
+                        <h2 class="text-xl font-bold mb-4 text-gray-800">Formula medica</h2>
+                        <form id="prescription-form" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label for="medication"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Medicamento</label>
+                                <input type="text" id="medication"
+                                    class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                    required>
+                            </div>
+                            <div>
+                                <label for="dose" class="block text-sm font-medium text-gray-700 mb-1">Dosis</label>
+                                <input type="text" id="dose"
+                                    class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                    required>
+                            </div>
+                            <div>
+                                <label for="frequency"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Frecuencia</label>
+                                <select id="frequency"
+                                    class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                    required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="1x día">1 vez al día</option>
+                                    <option value="2x día">2 veces al día</option>
+                                    <option value="3x día">3 veces al día</option>
+                                    <option value="cada 4 horas">Cada 4 horas</option>
+                                    <option value="cada 6 horas">Cada 6 horas</option>
+                                    <option value="cada 8 horas">Cada 8 horas</option>
+                                    <option value="cada 12 horas">Cada 12 horas</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-3">
+                                <label for="instructions"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Indicaciones</label>
+                                <textarea id="instructions" rows="3"
+                                    class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                    required></textarea>
+                            </div>
+                            <div class="md:col-span-3">
+                                <label for="patient-select"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Paciente</label>
+                                <select id="patient-select"
+                                    class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                    required>
+                                    <option value="">Seleccionar paciente</option>
+                                    <option value="1">María González</option>
+                                    <option value="2">Carlos Rodríguez</option>
+                                    <option value="3">Ana Martínez</option>
+                                    <option value="4">Luis Sánchez</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-3 flex justify-end">
+                                <button type="submit"
+                                    class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200">
+                                    <i class="fas fa-save mr-2"></i> Guardar Prescripción
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </main>

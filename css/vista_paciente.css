@@ -1,0 +1,80 @@
+/* vista_paciente.css */
+
+/* General */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f0f9ff; /* Azul claro */
+}
+
+/* Navbar */
+nav {
+  background-color: #0077b6; /* Azul oscuro */
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+nav .text-lg {
+  font-weight: bold;
+}
+nav button i {
+  transition: color 0.3s;
+}
+nav button i:hover {
+  color: #caf0f8; /* Azul claro */
+}
+
+/* Panel principal */
+section {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+/* Tarjetas */
+a {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #e0f7fa; /* Azul muy claro */
+}
+a i {
+  color: #0077b6; /* Azul oscuro */
+  margin-bottom: 0.5rem;
+}
+a p {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    grid-template-columns: 1fr;
+  }
+  /* Footer */
+footer {
+  background-color: #0077b6;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+}

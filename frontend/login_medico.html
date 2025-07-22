@@ -2,50 +2,138 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingreso especialista - YourPill</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/bootstrap.css" />
     <link rel="stylesheet" href="../css/login_medico.css" />
 </head>
 
 <body>
-    <div class="medico-container position-relative">
-        <div class="login-box position-relative">
-            <div class="logo-container">
-                <img src="../resources/images/LogoBlancoYourpill.png" alt="YourPill Logo" class="logo mb-3" />
+    <div class="login-box position-relative">
+        <div class="logo-container">
+            <img src="../resources/images/LogoBlancoYourpill.png" alt="YourPill Logo" class="logo" />
+        </div>
+        <div class="icono-login">
+            <i class="bi bi-person-badge"></i>
+        </div>
+        <h4 class="mb-1 text-center">Acceso para especialistas</h4>
+        <p class="text-muted mb-3 text-center" style="font-size: 0.9rem;">
+            Ingreso exclusivo para profesionales de la salud registrados en la plataforma.
+        </p>
+        <form method="POST" action="../backend/login_medico.php">
+            <div class="form-group">
+                <label for="email">Usuario (email)</label>
+                <input type="email" name="email" id="email" class="form-control" required />
             </div>
-            <div class="icono-login">
-                <i class="bi bi-person-badge"></i>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" id="password" class="form-control" required />
             </div>
-            <h4 class="mb-2 text-center">Acceso para especialistas</h4>
-            <p class="text-muted mb-4 text-center" style="font-size: 0.9rem;">
-                Ingreso exclusivo para profesionales de la salud registrados en la plataforma.
-            </p>
-            <form method="POST" action="../backend/login_medico.php">
-                <div class="form-group mb-3 text-start">
-                    <label for="email">Usuario (email)</label>
-                    <input type="email" name="email" id="email" class="form-control" required />
-                </div>
-                <div class="form-group mb-4 text-start">
-                    <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control" required />
-                </div>
-                <input type="submit" value="Iniciar sesión" class="btn btn-success w-100" />
-            </form>
-            <div class="links mt-2 text-center">
-                <a href="../frontend/registro_medico.html" class="link-light">Crear cuenta</a><br>
-                <a href="recuperar_contrasena.html" class="link-light">Restablecer contraseña</a>
-            </div>
-            <div class="mt-4 text-center">
-                <a href="../frontend/login_usuario.html" class="text-light text-decoration-none">
-                    ← Volver al login de pacientes
-                </a>
-            </div>
+            <input type="submit" value="Iniciar sesión" class="btn btn-success w-100 mt-3" />
+        </form>
+        <div class="links mt-2 text-center">
+            <a href="../frontend/registro_medico.html" class="link-light">Crear cuenta</a><br>
+            <a href="recuperar_contrasena.html" class="link-light">Restablecer contraseña</a>
+        </div>
+        <div class="mt-2 text-center">
+            <a href="../frontend/login_usuario.html" class="btn btn-outline-pacientes">
+                ← Volver al login de pacientes
+            </a>
         </div>
     </div>
     <script src="../js/validaciones.js"></script>
+
+    <div id="overlay-toast" style="display: none;"></div>
+
+    <script>
+        function mostrarOverlayCentral(mensaje, tipo = 'exito') {
+            const colores = {
+                exito: '#4CAF50',
+                error: '#f44336',
+                advertencia: '#ff9800'
+            };
+            const iconos = {
+                exito: `
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>`,
+                error: `
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white" viewBox="0 0 24 24">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+        10-4.48 10-10S17.52 2 12 2zm5 13l-1.41 1.41L12
+        13.41l-3.59 3.59L7 15l3.59-3.59L7 7.83 8.41 6.41
+        12 10l3.59-3.59L17 7.83l-3.59 3.58L17 15z"/>
+    </svg>`,
+                advertencia: `
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white" viewBox="0 0 24 24">
+      <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+    </svg>`
+            };
+
+            const overlay = document.getElementById('overlay-toast');
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            overlay.style.display = 'flex';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            overlay.style.zIndex = '1000';
+
+            const box = document.createElement('div');
+            box.style.backgroundColor = colores[tipo] || '#333';
+            box.style.color = 'white';
+            box.style.padding = '28px 40px';
+            box.style.borderRadius = '12px';
+            box.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';
+            box.style.fontSize = '20px';
+            box.style.fontFamily = 'Arial, sans-serif';
+            box.style.textAlign = 'center';
+            box.style.maxWidth = '90%';
+            box.style.opacity = '0';
+            box.style.transition = 'opacity 0.4s ease';
+
+            const icon = document.createElement('div');
+            icon.innerHTML = iconos[tipo] || '';
+            icon.style.fontSize = '44px';
+            icon.style.marginBottom = '12px';
+
+            const text = document.createElement('div');
+            text.textContent = mensaje;
+
+            box.appendChild(icon);
+            box.appendChild(text);
+            overlay.innerHTML = '';
+            overlay.appendChild(box);
+
+            // Mostrar
+            setTimeout(() => (box.style.opacity = '1'), 50);
+
+            // Ocultar automáticamente
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    const params = new URLSearchParams(window.location.search);
+                    params.delete('msg');
+                    params.delete('tipo');
+                    window.location.search = '?' + params.toString();
+                }, 500);
+            }, 3000);
+        }
+
+        // Si hay parámetros, mostrar mensaje automáticamente
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('msg')) {
+            const mensaje = params.get('msg');
+            const tipo = params.get('tipo') || 'error'; // por defecto es error
+            mostrarOverlayCentral(mensaje, tipo);
+        }
+    </script>
 
 </body>
 

@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['usuario_id'] = $usuario_id;
             $_SESSION['rol_id'] = $rol_id; // Guardar el rol en la sesión
             $_SESSION['primer_nombre'] = $primer_nombre; // Guardar nombre en la sesión
-            $_SESSION['primer_apellido'] = $primer_apellido; 
+            $_SESSION['primer_apellido'] = $primer_apellido;
+            $_SESSION['origen_login'] = 'usuario';
             header("Location: login-success.php");
             exit();
         } else {

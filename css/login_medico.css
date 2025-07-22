@@ -3,45 +3,43 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
-  font-family: 'Arial', 'Lato', sans-serif;
-  background: linear-gradient(120deg, #9BFAB0, #2b9141);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.medico-container {
-  position: relative;
+  font-family: 'Arial', 'Lato';
+  background: linear-gradient(120deg, #87e7a7, #edf0ed);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 60px 20px; /* Espacio vertical agregado */
-}
+  margin: 0;
+  padding: 1em;
 
-.logo-container {
-  position: relative;
-  top: 20px;
-  right: 20px;
 }
-
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  margin-bottom: 0.95em;
+  width: 100%;
+}
 .logo {
-  max-width: 150px;
+  max-width: 50%;
   height: auto;
+  display: block;
+  border-radius: 10px;
 }
 
 .login-box {
-  background-color:  #5dca75;
-  position: relative;
+  background-color: #48db68;
+  height: auto;
   width: 100%;
-  max-width: 400px;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  color: #212529;
+  max-width: 360px;
+  padding: 2em;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  color: #111d12;
+  box-sizing: border-box;
+
 }
 
 .icono-login {
@@ -52,7 +50,7 @@ body {
 }
 
 .icono-login i {
-  font-size: 5rem;
+  font-size: 4rem;
   color: #fff;
   animation: aparecer 0.6s ease-out;
 }
@@ -62,6 +60,7 @@ body {
     opacity: 0;
     transform: scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -69,14 +68,34 @@ body {
 }
 
 .links a {
-  color: #ffffff !important;
-  font-size: 0.85rem;
+  color: #fff !important;
+  font-size: 0.95rem;
   font-weight: 500;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .links a:hover {
-  color: #d9f2e3 !important;
+  color: #fff !important;
   text-decoration: underline;
+}
+ .btn-outline-pacientes {
+  background-color: #fbfcfb;
+  border: 1.5px solid #ffffff;
+  color: #387a59;
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+
+}
+
+.btn-outline-pacientes:hover {
+  background-color: #fff;
+  color: #5de45d;
+  transform: translateY(-2px);
 }

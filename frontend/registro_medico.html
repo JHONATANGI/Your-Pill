@@ -4,180 +4,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Usuario</title>
+    <title>Registro de Especialista</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="../css/registro_medico.css">
+    <link rel="stylesheet" href="../css/registro_medico.css">
 
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-    <div class="w-full max-w-3xl bg-white rounded-xl shadow-2xl overflow-hidden max-h-screen md:h-[92vh] flex flex-col">
-        <div class="md:flex flex-grow overflow-hidden">
+<body class="bg-emerald-50 min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-3xl bg-white rounded-xl shadow-2xl overflow-hidden">
+        <div class="md:flex">
 
             <!-- Lado izquierdo -->
             <div
-                class="hidden md:block md:w-1/2 bg-gradient-to-br from-green-500 to-emerald-700 px-6 py-8 flex flex-col justify-center items-center text-white">
-                <div class="text-center mb-6">
-                    <h1 class="text-2xl font-bold mb-6">¡Bienvenido!</h1>
-                    <p class="text-sm mb-6 leading-snug">Este formulario es exclusivamente para médicos. Si eres
-                        paciente, dirígete a la opción de registro correspondiente.</p>
-                    <div class="text-6xl mb-6">
+                class="hidden md:block md:w-1/2 bg-gradient-to-br from-green-500 to-emerald-700 p-10 flex flex-col justify-center items-center text-white">
+                <div class="text-center space-y-6">
+                    <h2 class="text-3xl font-bold">¡Bienvenido!</h2>
+                    <p class="text-sm leading-snug">Este formulario es exclusivamente para médicos. Si eres paciente,
+                        dirígete a la opción de registro correspondiente.</p>
+                    <div class="text-6xl">
                         <i class="fas fa-user-doctor"></i>
                     </div>
-                    <p class="text-sm opacity-90 mb-6">¿Ya tienes una cuenta?
-                        <a href="../frontend/login.html" class="font-bold underline">Inicia sesión</a>
+                    <p class="text-sm opacity-90">¿Ya tienes una cuenta?
+                        <a href="../frontend/login_medico.html" class="font-bold underline">Inicia sesión</a>
                     </p>
                 </div>
             </div>
 
             <!-- Formulario -->
-            <div class="w-full md:w-1/2 p-6 overflow-y-auto">
-                <h3 class="text-xl font-semibold mb-4 text-center text-emerald-700">Registro Médico</h3>
-                <form method="POST" action="../backend/registro_medico.php" class="space-y-3">
+            <div class="w-full md:w-2/3 p-6 md:p-8 overflow-y-auto">
+                <div class="flex justify-center mb-6 md:hidden">
+                    <div
+                        class="w-20 h-20 bg-emerald-600 rounded-full flex items-center justify-center text-3xl text-white">
+                        <i class="fas fa-user-doctor"></i>
+                    </div>
+                </div>
+                <h2 class="text-2xl font-bold text-emerald-700 mb-6 text-center md:text-left">Registro de Especialistas</h2>
 
-                    <!-- Campos (compactados) -->
-                    <div>
-                        <label for="numero_identificacion" class="block text-sm font-semibold text-gray-800 mb-1">Número
-                            de Identificación</label>
-                        <input type="text" id="numero_identificacion" name="numero_identificacion"
-                            class="border border-emerald-500 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                            required />
+                <form id="registroMedicoForm" action="../backend/registro_medico.php" method="POST" class="space-y-6">
+
+                    <!-- Tipo y número de identificación -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="tipo_identificacion" class="block text-sm font-semibold text-gray-800 mb-2">Tipo
+                                de Identificación</label>
+                            <select name="tipo_identificacion" id="tipo_identificacion" required
+                                class="w-full p-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                                <option value="">Seleccione...</option>
+                                <option value="CC">Cédula de ciudadanía</option>
+                                <option value="CE">Cédula de extranjería</option>
+                                <option value="TI">Tarjeta de identidad</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="numero_identificacion"
+                                class="block text-sm font-semibold text-gray-800 mb-2">Número de Identificación</label>
+                            <input type="text" name="numero_identificacion" id="numero_identificacion" required
+                                class="w-full p-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                        </div>
                     </div>
 
-                    <div>
-                        <label for="tipo_identificacion" class="block text-sm font-semibold text-gray-800 mb-1">Tipo de
-                            Identificación</label>
-                        <select id="tipo_identificacion" name="tipo_identificacion"
-                            class="border border-emerald-500 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                            required>
-                            <option value="">Seleccione...</option>
-                            <option value="CC">Cédula de Ciudadanía</option>
-                            <option value="TI">Tarjeta de Identidad</option>
-                            <option value="CE">Cédula de Extranjería</option>
-                        </select>
-                    </div>
-
-                    <div class="md:flex gap-3">
-                        <div class="md:w-1/2">
-                            <label for="primer_nombre" class="block text-sm font-semibold text-gray-800 mb-1">Primer
+                    <!-- Nombre, apellido, género -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="primer_nombre" class="block text-sm font-semibold text-gray-800 mb-2">Primer
                                 Nombre</label>
-                            <input type="text" id="primer_nombre" name="primer_nombre"
-                                class="border border-emerald-500 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                                required />
+                            <input type="text" name="primer_nombre" id="primer_nombre" required
+                                class="w-full p-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
                         </div>
-                        <div class="md:w-1/2">
-                            <label for="primer_apellido" class="block text-sm font-semibold text-gray-800 mb-1">Primer
+                        <div>
+                            <label for="primer_apellido" class="block text-sm font-semibold text-gray-800 mb-2">Primer
                                 Apellido</label>
-                            <input type="text" id="primer_apellido" name="primer_apellido"
-                                class="border border-emerald-500 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                                required />
+                            <input type="text" name="primer_apellido" id="primer_apellido" required
+                                class="w-full p-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                        </div>
+                        <div>
+                            <label for="genero" class="block text-sm font-semibold text-gray-800 mb-2">Género</label>
+                            <select name="genero" id="genero" required
+                                class="w-full p-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                                <option value="">Seleccione...</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Otro">Otro</option>
+                            </select>
                         </div>
                     </div>
 
-                    <div>
-                        <label for="genero" class="block text-sm font-semibold text-gray-800 mb-1">Género</label>
-                        <select id="genero" name="genero"
-                            class="border border-emerald-500 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                            required>
-                            <option value="">Seleccione...</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Femenino">Femenino</option>
-                            <option value="Otro">Otro</option>
-                        </select>
+                    <!-- Teléfono y correo -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="telefono"
+                                class="block text-sm font-semibold text-gray-800 mb-2">Teléfono</label>
+                            <input type="text" name="telefono" id="telefono" required
+                                class="w-full p-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-gray-800 mb-2">Correo
+                                Institucional</label>
+                            <input type="email" name="email" id="email" required
+                                class="w-full p-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                        </div>
                     </div>
 
-                    <div>
-                        <label for="telefono" class="block text-sm font-semibold text-gray-800 mb-1">Teléfono</label>
-                        <input type="tel" id="telefono" name="telefono" placeholder="Ej. 3012345678"
-                            class="border border-emerald-500 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                            required />
+                    <!-- Especialidad y matrícula -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="especialidad"
+                                class="block text-sm font-semibold text-gray-800 mb-2">Especialidad Médica</label>
+                            <input type="text" name="especialidad" id="especialidad" required
+                                class="w-full p-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                        </div>
+                        <div>
+                            <label for="matricula_profesional"
+                                class="block text-sm font-semibold text-gray-800 mb-2">Matrícula Profesional</label>
+                            <input type="text" name="matricula_profesional" id="matricula_profesional" required
+                                class="w-full p-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                        </div>
                     </div>
 
+                    <!-- Contraseña -->
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-gray-800 mb-1">Correo
-                            Institucional</label>
-                        <input type="email" id="email" name="email"
-                            class="border border-emerald-500 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                            required />
+                        <label for="password" class="block text-sm font-semibold text-gray-800 mb-2">Contraseña</label>
+                        <input type="password" name="password" id="password" required
+                            class="w-full p-3 border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
                     </div>
 
-                    <div>
-                        <label for="contrasena"
-                            class="block text-sm font-semibold text-gray-800 mb-1">Contraseña</label>
-                        <input type="password" id="contrasena" name="contrasena"
-                            class="border border-emerald-500 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                            required />
-                    </div>
+                    <input type="hidden" name="rol_id" value="1">
 
-                    <div>
-                        <label for="especialidad" class="block text-sm font-semibold text-gray-800 mb-1">Especialidad
-                            Médica</label>
-                        <input type="text" id="especialidad" name="especialidad"
-                            class="border border-emerald-500 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                            required />
-                    </div>
-
-                    <div>
-                        <label for="matricula_profesional"
-                            class="block text-sm font-semibold text-gray-800 mb-1">Matrícula Profesional</label>
-                        <input type="text" id="matricula_profesional" name="matricula_profesional"
-                            class="border border-emerald-500 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                            required />
-                    </div>
-
-                    <input type="hidden" name="rol_id" value="1" />
-
+                    <!-- Botón -->
                     <button type="submit"
-                        class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-md w-full transition duration-300">
-                        Registrar médico
+                        class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2">
+                        <i class="fas fa-user-doctor"></i>
+                        Registrarse
                     </button>
                 </form>
             </div>
         </div>
     </div>
-    <script>
-        // Función para mostrar/ocultar contraseña
-        function togglePassword(id) {
-            const passwordInput = document.getElementById(id);
-            const icon = passwordInput.nextElementSibling.querySelector('i');
-
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.classList.replace('fa-eye', 'fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                icon.classList.replace('fa-eye-slash', 'fa-eye');
-            }
-        }
-
-        // Efecto floating labels
-        document.querySelectorAll('.input-group input, .input-group select').forEach(input => {
-            // Si el campo ya tiene valor al cargar, mover el label
-            if (input.value) {
-                input.previousElementSibling.classList.add('text-blue-500');
-                input.previousElementSibling.classList.add('transform');
-                input.previousElementSibling.classList.add('-translate-y-5');
-                input.previousElementSibling.classList.add('scale-90');
-            }
-
-            input.addEventListener('focus', () => {
-                input.previousElementSibling.classList.add('text-blue-500');
-                input.previousElementSibling.classList.add('transform');
-                input.previousElementSibling.classList.add('-translate-y-5');
-                input.previousElementSibling.classList.add('scale-90');
-            });
-
-            input.addEventListener('blur', () => {
-                if (!input.value) {
-                    input.previousElementSibling.classList.remove('text-blue-500');
-                    input.previousElementSibling.classList.remove('transform');
-                    input.previousElementSibling.classList.remove('-translate-y-5');
-                    input.previousElementSibling.classList.remove('scale-90');
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

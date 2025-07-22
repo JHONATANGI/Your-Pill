@@ -1,9 +1,17 @@
 body {
-  background-image: url("../resources/images/fondo_medico.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    
+    background-image: url("../resources/images/fondo_medico.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    overflow-y: auto;
+
+
 }
+
 .input-group:focus-within label {
     color: #56c569;
     transform: translateY(-0.5rem) scale(0.9);
