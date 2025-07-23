@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../css/vista_medico.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css" />
 
 </head>
 
@@ -15,14 +16,25 @@
     <div class="container mx-auto px-4 py-8">
         <!-- Header -->
         <nav class="bg-green-400 shadow-md rounded-lg mb-8 p-6 flex justify-between items-center">
-            <!-- Logo a la izquierda -->
+            <!-- logo a la derecha -->
             <div class="flex-shrink-0">
-                <img src="../resources/images/LogoBlancoYourpill.png" alt="YourPill Logo" class="h-12 w-auto" />
+                <img src="../resources/images/logo_yourpill.png" alt="YourPill Logo" class="h-12 w-auto" />
             </div>
-            <!-- Usuario a la derecha -->
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-user text-white text-2xl"></i>
-                <span id="nombre-usuario" class="font-medium text-white">Cargando...</span>
+            <!-- usuario a la izquierda -->
+            <div class="flex gap-5 text-xl items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-user text-white text-2xl"></i>
+                    <span id="nombre-usuario" class="font-medium text-white">Cargando...</span>
+                </div>
+                <button title="cerrar sesión" onclick="window.location.href='../backend/logout.php'">
+                    <i class="fas fa-sign-out-alt text-white"></i>
+                </button>
+                <button title="Notificaciones">
+                    <i class="fas fa-bell text-white"></i>
+                </button>
+                <button title="Configuración">
+                    <i class="fas fa-cog text-white"></i>
+                </button>
             </div>
         </nav>
 

@@ -6,93 +6,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paciente</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css" />
     <link rel="stylesheet" href="../css/vista_paciente.css">
 </head>
 
-<body class="bg-blue-100 font-sans flex flex-col">
-    <!-- Navbar superior -->
-    <nav class="bg-blue-500 text-white px-6 py-4 flex justify-between items-center shadow-md">
-        <div class="flex items-center space-x-4">
-            <div class="relative">
+<body class="bg-blue-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Navbar superior -->
+        <nav class="bg-blue-500 text-white rounded-lg mb-8 p-6 flex justify-between items-center shadow-md">
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <div class="flex-shrink-0">
+                        <img src="../resources/images/logo_yourpill.png" alt="YourPill Logo" class="h-12 w-auto" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex gap-5 text-xl items-center">
                 <div class="flex items-center space-x-2">
                     <i class="fas fa-user text-white text-2xl"></i>
                     <span id="nombre-usuario" class="font-medium text-white">Cargando...</span>
                 </div>
+                <button title="cerrar sesión" onclick="window.location.href='../backend/logout.php'">
+                    <i class="fas fa-sign-out-alt hover:text-gray-200"></i>
+                </button>
+                <button title="Notificaciones">
+                    <i class="fas fa-bell hover:text-gray-200"></i>
+                </button>
+                <button title="Configuración">
+                    <i class="fas fa-cog hover:text-gray-200"></i>
+                </button>
             </div>
-        </div>
-        <div class="flex gap-5 text-xl items-center">
-            <button title="Notificaciones">
-                <i class="fas fa-bell hover:text-gray-200"></i>
-            </button>
-            <button title="Configuración">
-                <i class="fas fa-cog hover:text-gray-200"></i>
-            </button>
-        </div>
-    </nav>
-    <div class="w-full max-w-5xl mx-auto flex flex-col flex-1 min-h-screen">
-        <!-- 
+        </nav>
+        <div class="w-full max-w-5xl mx-auto flex flex-col flex-1 min-h-screen">
+            <!-- 
     Panel principal de opciones -->
-        <section class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-6 p-6 text-center">
+            <section class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-6 p-6 text-center">
 
-            <!-- Recordatorios -->
-            <a href="recordatorios.html"
-                class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
-                <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                    <i class="fas fa-clock text-5xl text-blue-400 mb-2"></i>
-                </span>
-                <p class="text-sm font-semibold">Recordatorios</p>
-            </a>
+                <!-- Recordatorios -->
+                <a href="recordatorios.html"
+                    class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
+                    <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
+                        <i class="fas fa-clock text-5xl text-blue-400 mb-2"></i>
+                    </span>
+                    <p class="text-sm font-semibold">Recordatorios</p>
+                </a>
 
-            <!-- Fórmula Médica -->
-            <a href="formula_medica.html"
-                class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
-                <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                    <i class="fas fa-pills text-5xl text-blue-400 mb-2"></i>
-                </span>
-                <p class="text-sm font-semibold">Fórmula médica</p>
-            </a>
+                <!-- Fórmula Médica -->
+                <a href="formula_medica.html"
+                    class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
+                    <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
+                        <i class="fas fa-pills text-5xl text-blue-400 mb-2"></i>
+                    </span>
+                    <p class="text-sm font-semibold">Fórmula médica</p>
+                </a>
 
-            <!-- Chat Médico -->
-            <a href="chat_medico.html"
-                class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
-                <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                    <i class="fas fa-comment-medical text-5xl text-blue-400 mb-2"></i>
-                </span>
-                <p class="text-sm font-semibold">Chat con el médico</p>
-            </a>
+                <!-- Chat Médico -->
+                <a href="chat_medico.html"
+                    class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
+                    <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
+                        <i class="fas fa-comment-medical text-5xl text-blue-400 mb-2"></i>
+                    </span>
+                    <p class="text-sm font-semibold">Chat con el médico</p>
+                </a>
 
-            <!-- Historial Clínico -->
-            <a href="historial.html"
-                class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
-                <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                    <i class="fas fa-history text-5xl text-blue-400 mb-2"></i>
-                </span>
-                <p class="text-sm font-semibold">Historial médico</p>
-            </a>
+                <!-- Historial Clínico -->
+                <a href="historial.html"
+                    class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
+                    <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
+                        <i class="fas fa-history text-5xl text-blue-400 mb-2"></i>
+                    </span>
+                    <p class="text-sm font-semibold">Historial médico</p>
+                </a>
 
-            <!-- Citas Médicas -->
-            <a href="citas.html"
-                class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
-                <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                    <i class="fas fa-calendar-check text-5xl text-blue-400 mb-2"></i>
-                </span>
-                <p class="text-sm font-semibold">Citas programadas</p>
-            </a>
-            <a href="#"
-                class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center min-h-[160px] min-w-[120px]">
-                <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                    <i class="fas fa-plus text-5xl text-blue-400 mb-2"></i>
-                </span>
-                <p class="text-sm font-semibold">Más opciones</p>
-            </a>
+                <!-- Citas Médicas -->
+                <a href="citas.html"
+                    class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
+                    <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
+                        <i class="fas fa-calendar-check text-5xl text-blue-400 mb-2"></i>
+                    </span>
+                    <p class="text-sm font-semibold">Citas programadas</p>
+                </a>
+                <a href="#"
+                    class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center min-h-[160px] min-w-[120px]">
+                    <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
+                        <i class="fas fa-plus text-5xl text-blue-400 mb-2"></i>
+                    </span>
+                    <p class="text-sm font-semibold">Más opciones</p>
+                </a>
 
-        </section>
-        <!-- Pie de página -->
-        <footer class="text-gray-600 text-sm text-center py-4 mt-10 shadow-inner">
-            © 2025 Your Pill· Todos los derechos reservados
-        </footer>
+            </section>
+            <!-- Pie de página -->
+            <footer class="text-gray-600 text-sm text-center py-4 mt-10 shadow-inner">
+                © 2025 Your Pill· Todos los derechos reservados
+            </footer>
+        </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -109,11 +117,10 @@
                 })
                 .catch(err => {
                     console.error('Error al obtener el nombre:', err);
-                    document.getElementById('nombre-usuario').textContent = 'medico';
+                    document.getElementById('nombre-usuario').textContent = 'Paciente';
                 });
         });
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
 </body>
 
 </html>
