@@ -6,8 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $conn = new mysqli("localhost", "root", "", "base_yourpill");
-
     // Verificar si el usuario existe y obtener su rol
     $stmt = $conn->prepare("SELECT usuario_id, contrasena, rol_id, primer_nombre, primer_apellido FROM Usuarios WHERE email = ?");
     $stmt->bind_param("s", $email);
