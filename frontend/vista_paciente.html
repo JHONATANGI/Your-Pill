@@ -12,7 +12,7 @@
 </head>
 
 <body class="bg-blue-100 min-h-screen">
-    <div id="panel-clinico" class="bg-white p-6 rounded-xl shadow-md">
+    <div class="bg-white p-6 rounded-xl shadow-md">
         <div class="container mx-auto px-4 py-8">
             <!-- Navbar superior -->
             <nav class="bg-blue-500 text-white rounded-lg mb-8 p-6 flex justify-between items-center shadow-md">
@@ -40,63 +40,9 @@
                 </div>
             </nav>
             <div class="w-full max-w-5xl mx-auto flex flex-col flex-1 min-h-screen">
-                <!-- 
-    Panel principal de opciones -->
-                <section class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-6 p-6 text-center">
-
-                    <!-- Recordatorios -->
-                    <button onclick="mostrarModulo('recordatorios')"
-                        class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
-                        <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                            <i class="fas fa-clock text-5xl text-blue-400 mb-2"></i>
-                        </span>
-                        <p class="text-sm font-semibold">Recordatorios</p>
-                    </button>
-
-
-                    <!-- Fórmula Médica -->
-                    <a href="formula_medica.html"
-                        class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
-                        <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                            <i class="fas fa-pills text-5xl text-blue-400 mb-2"></i>
-                        </span>
-                        <p class="text-sm font-semibold">Fórmula médica</p>
-                    </a>
-
-                    <!-- Chat Médico -->
-                    <a href="chat_medico.html"
-                        class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
-                        <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                            <i class="fas fa-comment-medical text-5xl text-blue-400 mb-2"></i>
-                        </span>
-                        <p class="text-sm font-semibold">Chat con el médico</p>
-                    </a>
-
-                    <!-- Historial Clínico -->
-                    <a href="historial.html"
-                        class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
-                        <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                            <i class="fas fa-history text-5xl text-blue-400 mb-2"></i>
-                        </span>
-                        <p class="text-sm font-semibold">Historial médico</p>
-                    </a>
-
-                    <!-- Citas Médicas -->
-                    <a href="citas.html"
-                        class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center">
-                        <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                            <i class="fas fa-calendar-check text-5xl text-blue-400 mb-2"></i>
-                        </span>
-                        <p class="text-sm font-semibold">Citas programadas</p>
-                    </a>
-                    <a href="#"
-                        class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg hover:bg-blue-100 transition cursor-pointer flex flex-col items-center justify-center min-h-[160px] min-w-[120px]">
-                        <span class="flex items-center justify-center min-w-[80px] min-h-[80px]">
-                            <i class="fas fa-plus text-5xl text-blue-400 mb-2"></i>
-                        </span>
-                        <p class="text-sm font-semibold">Más opciones</p>
-                    </a>
-
+                <!-- Panel principal de opciones -->
+                <section id="panel_general">
+                    <h2 class="text-lg font-semibold ">Panel principal de opciones</h2>
                 </section>
                 <!-- Pie de página -->
                 <footer class="text-gray-600 text-sm text-center py-4 mt-10 shadow-inner">
@@ -105,25 +51,7 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            fetch('../backend/obtener_usuario.php', {
-                credentials: 'include'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log("Datos recibidos del backend:", data); // 👈 Esto mostrará el JSON en la consola
-
-                    const nombreCompleto = `${data.nombre} ${data.apellido}`.trim();
-                    const span = document.getElementById('nombre-usuario');
-                    span.textContent = nombreCompleto || 'Paciente';
-                })
-                .catch(err => {
-                    console.error('Error al obtener el nombre:', err);
-                    document.getElementById('nombre-usuario').textContent = 'Paciente';
-                });
-        });
-    </script>
+    <script src="../js/paciente.js" type="module"></script>
 </body>
 
 </html>
