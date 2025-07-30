@@ -7,6 +7,9 @@ if (!isset($_SESSION['usuario_id']) || !isset($_SESSION['rol_id'])) {
     header("Location: ../frontend/login_usuario.html");
   }
   exit();
+  header("Cache-Control: no-store, no-cache, must-revalidate");
+  header("Pragma: no-cache");
+  header("Expires: 0");
 }
 
 $rol_id = $_SESSION['rol_id'];

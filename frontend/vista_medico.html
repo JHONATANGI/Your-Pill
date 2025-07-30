@@ -351,11 +351,11 @@
 
                     const nombreCompleto = `${data.nombre} ${data.apellido}`.trim();
                     const span = document.getElementById('nombre-usuario');
-                    span.textContent = nombreCompleto || 'Usuario';
+                    span.textContent = nombreCompleto || 'Medico';
                 })
                 .catch(err => {
                     console.error('Error al obtener el nombre:', err);
-                    document.getElementById('nombre-usuario').textContent = 'Usuario';
+                    document.getElementById('nombre-usuario').textContent = 'Medico';
                 });
         });
     </script>
