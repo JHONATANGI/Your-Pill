@@ -55,3 +55,296 @@
 </body>
 
 </html>
+ <main class="container mx-auto px-4 py-8">
+        <section id="citas" class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Programar Cita</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <form id="appointment-form" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="doctor" class="block text-sm font-medium text-gray-700">Médico</label>
+                            <select id="doctor" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                                <option value="">Seleccionar médico</option>
+                                <option value="general">Médico General</option>
+                                <option value="cardiologo">Cardiólogo</option>
+                                <option value="dermato">Dermatólogo</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="date" class="block text-sm font-medium text-gray-700">Fecha</label>
+                            <input type="date" id="date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="time" class="block text-sm font-medium text-gray-700">Hora</label>
+                            <input type="time" id="time" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="reason" class="block text-sm font-medium text-gray-700">Motivo</label>
+                            <input type="text" id="reason" placeholder="Motivo de la cita" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-primary text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">Programar Cita</button>
+                </form>
+                <div id="appointments-list" class="mt-6">
+                    <h3 class="text-lg font-semibold mb-4">Citas Programadas</h3>
+                    <ul id="appointments" class="space-y-2"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="medicamentos" class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Medicamentos Actuales</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <form id="medication-form" class="space-y-4 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="med-name" class="block text-sm font-medium text-gray-700">Nombre del Medicamento</label>
+                            <input type="text" id="med-name" placeholder="Ej: Paracetamol" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="med-dose" class="block text-sm font-medium text-gray-700">Dosis</label>
+                            <input type="text" id="med-dose" placeholder="Ej: 500mg" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="med-frequency" class="block text-sm font-medium text-gray-700">Frecuencia</label>
+                            <input type="text" id="med-frequency" placeholder="Ej: Cada 8 horas" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="med-start" class="block text-sm font-medium text-gray-700">Fecha de Inicio</label>
+                            <input type="date" id="med-start" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-accent text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors">Agregar Medicamento</button>
+                </form>
+                <div id="medications-list">
+                    <h3 class="text-lg font-semibold mb-4">Medicamentos Registrados</h3>
+                    <ul id="medications" class="space-y-2"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="alergias" class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Alergias</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <form id="allergy-form" class="space-y-4 mb-6">
+                    <div>
+                        <label for="allergy-name" class="block text-sm font-medium text-gray-700">Nombre de la Alergia</label>
+                        <input type="text" id="allergy-name" placeholder="Ej: Penicilina" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label for="allergy-severity" class="block text-sm font-medium text-gray-700">Severidad</label>
+                        <select id="allergy-severity" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                            <option value="leve">Leve</option>
+                            <option value="moderada">Moderada</option>
+                            <option value="grave">Grave</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="bg-secondary text-white px-6 py-2 rounded-md hover:bg-gray-700 transition-colors">Agregar Alergia</button>
+                </form>
+                <div id="allergies-list">
+                    <h3 class="text-lg font-semibold mb-4">Alergias Registradas</h3>
+                    <ul id="allergies" class="space-y-2"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="recordatorios" class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Recordatorios</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <form id="reminder-form" class="space-y-4 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="reminder-title" class="block text-sm font-medium text-gray-700">Título del Recordatorio</label>
+                            <input type="text" id="reminder-title" placeholder="Ej: Tomar medicamento" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="reminder-date" class="block text-sm font-medium text-gray-700">Fecha y Hora</label>
+                            <input type="datetime-local" id="reminder-date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="reminder-desc" class="block text-sm font-medium text-gray-700">Descripción</label>
+                        <textarea id="reminder-desc" rows="3" placeholder="Detalles del recordatorio" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"></textarea>
+                    </div>
+                    <button type="submit" class="bg-primary text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">Crear Recordatorio</button>
+                </form>
+                <div id="reminders-list">
+                    <h3 class="text-lg font-semibold mb-4">Recordatorios Activos</h3>
+                    <ul id="reminders" class="space-y-2"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Control de Medicamentos</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <p class="text-gray-600 mb-4">Aquí puedes registrar el control diario de tus medicamentos. Marca cuando los has tomado.</p>
+                <div id="medication-control" class="space-y-4">
+                    <!-- Los medicamentos se cargarán dinámicamente -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2023 Mi Salud. Todos los derechos reservados.</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Definir datos al inicio
+        let appointments = [];
+        let medications = [];
+        let allergies = [];
+        let reminders = [];
+
+        // Función para navegación con JS
+        function handleNavigation(event) {
+            event.preventDefault();
+            const target = event.target.getAttribute('href');
+            const element = document.querySelector(target);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Agregar event listeners a enlaces de navegación
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', handleNavigation);
+        });
+
+        // Toggle menú móvil
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Función para renderizar citas
+        function renderAppointments() {
+            const list = document.getElementById('appointments');
+            list.innerHTML = '';
+            appointments.forEach((appt, index) => {
+                const li = document.createElement('li');
+                li.className = 'bg-gray-100 p-3 rounded-md';
+                li.innerHTML = `<strong>${appt.doctor}</strong> - ${appt.date} ${appt.time} - ${appt.reason}`;
+                list.appendChild(li);
+            });
+        }
+
+        // Función para renderizar medicamentos
+        function renderMedications() {
+            const list = document.getElementById('medications');
+            const control = document.getElementById('medication-control');
+            list.innerHTML = '';
+            control.innerHTML = '';
+            medications.forEach((med, index) => {
+                const li = document.createElement('li');
+                li.className = 'bg-gray-100 p-3 rounded-md';
+                li.innerHTML = `<strong>${med.name}</strong> - ${med.dose} - ${med.frequency} - Inicio: ${med.start}`;
+                list.appendChild(li);
+
+                // Control diario
+                const controlDiv = document.createElement('div');
+                controlDiv.className = 'bg-gray-50 p-4 rounded-md border';
+                controlDiv.innerHTML = `
+                    <h4 class="font-semibold">${med.name} (${med.dose})</h4>
+                    <p>Frecuencia: ${med.frequency}</p>
+                    <div class="mt-2">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-primary">
+                            <span class="ml-2">Tomado hoy</span>
+                        </label>
+                    </div>
+                `;
+                control.appendChild(controlDiv);
+            });
+        }
+
+        // Función para renderizar alergias
+        function renderAllergies() {
+            const list = document.getElementById('allergies');
+            list.innerHTML = '';
+            allergies.forEach((allergy, index) => {
+                const li = document.createElement('li');
+                li.className = `p-3 rounded-md ${allergy.severity === 'grave' ? 'bg-red-100' : allergy.severity === 'moderada' ? 'bg-yellow-100' : 'bg-green-100'}`;
+                li.innerHTML = `<strong>${allergy.name}</strong> - Severidad: ${allergy.severity}`;
+                list.appendChild(li);
+            });
+        }
+
+        // Función para renderizar recordatorios
+        function renderReminders() {
+            const list = document.getElementById('reminders');
+            list.innerHTML = '';
+            reminders.forEach((reminder, index) => {
+                const li = document.createElement('li');
+                li.className = 'bg-blue-100 p-3 rounded-md';
+                li.innerHTML = `<strong>${reminder.title}</strong> - ${reminder.date} - ${reminder.desc}`;
+                list.appendChild(li);
+            });
+        }
+
+        // Event listeners para formularios
+        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const doctor = document.getElementById('doctor').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const reason = document.getElementById('reason').value;
+            if (doctor && date && time && reason) {
+                appointments.push({ doctor, date, time, reason });
+                renderAppointments();
+                this.reset();
+            }
+        });
+
+        document.getElementById('medication-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('med-name').value;
+            const dose = document.getElementById('med-dose').value;
+            const frequency = document.getElementById('med-frequency').value;
+            const start = document.getElementById('med-start').value;
+            if (name && dose && frequency && start) {
+                medications.push({ name, dose, frequency, start });
+                renderMedications();
+                this.reset();
+            }
+        });
+
+        document.getElementById('allergy-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('allergy-name').value;
+            const severity = document.getElementById('allergy-severity').value;
+            if (name && severity) {
+                allergies.push({ name, severity });
+                renderAllergies();
+                this.reset();
+            }
+        });
+
+        document.getElementById('reminder-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('reminder-title').value;
+            const date = document.getElementById('reminder-date').value;
+            const desc = document.getElementById('reminder-desc').value;
+            if (title && date && desc) {
+                reminders.push({ title, date, desc });
+                renderReminders();
+                this.reset();
+            }
+        });
+
+        // Inicializar renders
+        renderAppointments();
+        renderMedications();
+        renderAllergies();
+        renderReminders();
+    </script>
+</body>
+</html>
